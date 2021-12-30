@@ -4,20 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../redux/actions";
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from "react";
-import { todoListSelector, todoListFilter } from "../../redux/selectors";
+import { todoRemainingSelector } from "../../redux/selectors";
 
 export default function TodoList() {
     const [todoName, setTodoName] = useState('');
     const [priority, setPriority] = useState('Medium');
 
-    const todoList = useSelector(todoListSelector);
-
-    const todoFilter = useSelector(todoListFilter);
-
-    console.log({ todoList, todoFilter });
+    const todoList = useSelector(todoRemainingSelector);
 
     const dispatch = useDispatch();
-
 
     const handleAddButtonClick = () => {
         dispatch(addTodo({
@@ -42,11 +37,7 @@ export default function TodoList() {
         <Row style={{ height: 'calc(100% - 40px)' }}>
             <Col span={24} style={{ height: 'calc(100%-40px)', overflowY: 'auto' }}>
                 {
-                    todoFilter !== ''
-                        ?
-                        todoList.filter(todo => todo.name.toLowerCase().includes(todoFilter.toLowerCase())).map(x => <Todo key={x.id} name={x.name} prioriry={x.priority} />)
-                        :
-                        todoList.map(todo => <Todo key={todo.id} name={todo.name} prioriry={todo.priority} />)
+                    todoList.map(todo => <Todo key={todo.id} name={todo.name} prioriry={todo.priority} completed={todo.completed} />)
                 }
             </Col>
             <Col span={24}>

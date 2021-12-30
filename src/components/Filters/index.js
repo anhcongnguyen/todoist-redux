@@ -16,7 +16,7 @@ export default function Filters() {
 
     const handleSearchTextChange = (e) => {
         setSearchText(e.target.value);
-        dispatch(searchFilterChange(searchText));
+        dispatch(searchFilterChange(e.target.value));
     };
 
     // const handleStatusChange = (e) => {
