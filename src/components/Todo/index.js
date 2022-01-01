@@ -11,14 +11,14 @@ const priorityColorMapping = {
 };
 
 export default function Todo({ name, prioriry, completed, id }) {
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     const [checked, setChecked] = useState(completed);
 
-    // const toggleCheckbox = () => {
-    //     setChecked(!checked);
-    //     dispatch(todoListSlice.actions.toggleTodoStatus(id));
-    // };
+    const toggleCheckbox = () => {
+        setChecked(!checked);
+        // dispatch(todoListSlice.actions.toggleTodoStatus(id));
+    };
 
     return (
         <Row
@@ -30,7 +30,7 @@ export default function Todo({ name, prioriry, completed, id }) {
         >
             <Checkbox
                 checked={checked}
-            // onChange={toggleCheckbox}
+                onChange={toggleCheckbox}
             >
                 {name}
             </Checkbox>
